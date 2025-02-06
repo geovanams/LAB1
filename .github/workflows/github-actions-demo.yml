@@ -14,7 +14,10 @@ on:
         description: 'Environment to deploy to'
         type: environment
         required: true
-
+env:
+      MY_REPO_VAR : ${{ secrets.MY_REPO_SECRET}}
+      MY_REPO_SECRET : ${{ vars.MY_REPO_VAR}}
+      MY_WORKFLOW_VAR: 'meu workflow'
 jobs:
   Build:
     runs-on: ubuntu-latest
@@ -48,9 +51,12 @@ jobs:
       - run: |
           echo "🚀 Step 2..."
           sleep 10
+          echo "MY SECRET REPO:" $MY_REPO_VAR
+          echo "MY VAR REPO:" $MY_REPO_SECRET
       - run: |
           echo "🚀 Step 3..."
           sleep 10
+          echo "MY WORKFLOW VAR: $MY_WORKFLOW_VAR
       - run: |
           echo "🚀 Step 4..."
           sleep 10
