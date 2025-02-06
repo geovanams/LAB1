@@ -24,3 +24,14 @@ jobs:
       - name: Set time
         id: time
         run: echo "time=$(date)" >> $GITHUB_OUTPUT
+        
+  reusable-job1:
+    runs-on: ubuntu-latest
+    outputs:
+      current-time: ${{ steps.time.outputs.time }}
+    steps:
+      - name: Greet someone
+        run: echo "Hello ${{ inputs.who-to-greet }}"
+      - name: Set time
+        id: time
+        run: echo "time=$(date)" >> $GITHUB_OUTPUT
